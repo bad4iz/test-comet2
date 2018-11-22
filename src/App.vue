@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="left">
+      <item :id="1"/>
+      <item3 :id="2"/>
+    </div>
+    <div class="right">
+      <item2 :id="1"/>
+      <item4 :id="2"/>
+
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
+    Item: () => import('./components/Item'),
+    Item2: () => import('./components/Item2'),
+    Item3: () => import('./components/Item3'),
+    Item4: () => import('./components/Item4'),
+  },
+  methods: {
+    ...mapActions([
+      'init',
+    ]),
+  },
+  beforeMount() {
+    this.init();
   },
 };
 </script>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  justify-content: space-around;
 }
 </style>
