@@ -10,6 +10,20 @@ const jopa = new Vue({
 }).$mount('#app');
 
 
-window.receiveMessage = (id, payload) => {
-  jopa.$store.commit('change', {id, ...payload});
+window.receiveMessageBad = (id, payload) => {
+  const keys = Object.keys(payload).filter(key => key !== 'id');
+  if (keys.length === 0) {
+    console.log('not keys');
+  }
+  keys.forEach((key) => {
+    jopa.$store.state.list[id][key] = payload[key];
+  });
 }
+
+window.receiveMessageYes = (id, payload) => {
+  jopa.$store.commit('comet', {id, ...payload});
+}
+
+
+
+window.sendMessage = (obj) => { console.log(obj)}

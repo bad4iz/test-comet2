@@ -32,7 +32,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      // Mounts the "card" getter to the scope of your component.
       'getItem',
     ]),
     name: {
